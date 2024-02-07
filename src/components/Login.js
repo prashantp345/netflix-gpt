@@ -1,9 +1,8 @@
 import { useState, useRef  } from 'react'
 import Header from './Header'
 import { checkValidData } from '../utils/validate';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from 'react-router-dom';
 import { addUser } from '../utils/userSlice';
 import { useDispatch } from 'react-redux';
 
@@ -11,7 +10,6 @@ const Login = () => {
   const [ isSignInForm, setIsSignInForm ] = useState(true);
   const [ errorMessage, setErrorMessage ] = useState(null);
   
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const name = useRef(null);
@@ -23,7 +21,6 @@ const Login = () => {
     // validate form field data
     const nameValue = !isSignInForm ? name.current.value : true; 
     const message = checkValidData(email.current.value, password.current.value, nameValue);
-    console.log(message);
     setErrorMessage(message);
     if(message) return;
     
@@ -34,7 +31,7 @@ const Login = () => {
           // Signed in 
           const {uid, email, displayName} = userCredential.user;;
           dispatch(addUser({ uid: uid, email : email, displayName: displayName}))
-          navigate("/browse");
+       
         })
         .catch((error) => {
           //const errorCode = error.code;
@@ -46,7 +43,6 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
 
           // Profile Update 
           updateProfile(user, {
@@ -55,11 +51,10 @@ const Login = () => {
           }).then(() => {
             const {uid, email, displayName} = auth.currentUser;
             dispatch(addUser({uid: uid, email: email, displayName: displayName}));
-            navigate("/browse");
+
           }).catch((error) => {
             setErrorMessage(error.errorCode.replace("auth/",""));
           });
-       
         })
         .catch((error) => {
           const errorCode = error.code;
