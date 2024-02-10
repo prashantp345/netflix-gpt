@@ -29,6 +29,19 @@
 - Update Store with Trailer Video Data
 - Embedded the Youtube video and make it autoplay and mute
 - Tailwind Classes to make Main Container look Awesome
+- Build Secondary Component
+0 Build Movie List
+- Vuild Movie Card
+- TMDB Image CDN URL
+- Made the browse page amazing
+- usePopular Movies custon Hook
+
+- GPT Search Page
+- GPT Search Bar
+-(Bonus) Multi-language Feature in our APP ***
+
+- Memoization of data in our APP
+
 
 # Extra Learning
 - React Strick Mode - It renders component twice in dev only to check unconsistancy and shows error but in build (Prod) does not load twice
