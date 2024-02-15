@@ -61,15 +61,16 @@ const Header = () => {
     <div className='w-screen absolute px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'>
       <img
         className="w-44" src={Netflix_Logo_PMS} alt="logo"></img>
-      { user && (
-        <div className="flex p-2">
-            <select className='p-2 m-2 bg-black rounded-lg font-bold text-white opacity-70 border border-white'
+        <select className='p-2 m-2 bg-black rounded-lg font-bold text-white opacity-70 border border-white'
               ref={selectedLanguage} onChange={handlelanguageChange}>
               {SUPPORTED_LANGUAGES.map(lang => 
                 <option key={lang?.identifier} value={lang?.identifier} className=''>
                   {lang.name}
                 </option>)}
             </select>
+      { user && (
+        <div className="flex p-2">
+            
             <button onClick={showGptSearch} className='p-2 m-2 bg-blue-700 rounded-lg font-bold text-white'>
             { gptSearch.showGptSearch ? "Homepage" : "GPT Search" }
             </button>

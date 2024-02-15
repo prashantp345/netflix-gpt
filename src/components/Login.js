@@ -1,15 +1,17 @@
-import { useState, useRef  } from 'react'
+import { useState, useRef } from 'react'
 import Header from './Header'
 import { checkValidData } from '../utils/validate';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { addUser } from '../utils/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BACKGROUND_IMG } from '../utils/constants';
+import { lang } from "../utils/languageConstant";
 
 const Login = () => {
   const [ isSignInForm, setIsSignInForm ] = useState(true);
   const [ errorMessage, setErrorMessage ] = useState(null);
+  const config = useSelector((store) => store.config);
   
   const dispatch = useDispatch();
 
@@ -76,22 +78,21 @@ const Login = () => {
       </div>
       <form className='w-4/12 absolute p-8 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'
         onSubmit={(e)=> e.preventDefault() } >
-        <h1 className='font-bold text-3xl py-4'>{ isSignInForm ? 'Sign In' : 'Sign Up'}</h1>
+        <h1 className='font-bold text-3xl py-4'>{ isSignInForm ? lang[config.lang].signIn : lang[config.lang].signUp }</h1>
         {!isSignInForm &&
-           <input type='text' placeholder='Full Name' ref={name}
+           <input type='text' placeholder={lang[config.lang].namePlaceHolder} ref={name}
            className='p-4 my-4 w-full rounded-sm bg-gray-700 bg-opacity-70' />
         }  
-        <input type='text' placeholder='Email Address' ref={email}
+        <input type='text' placeholder={lang[config.lang].emailPlaceHolder} ref={email}
           className='p-4 my-4 w-full rounded-sm bg-gray-700 bg-opacity-70' />
-        <input type='password' placeholder='Password' ref={password}
+        <input type='password' placeholder={lang[config.lang].passwordPlaceHolder} ref={password}
           className='p-4 my-4 w-full rounded-sm bg-gray-700 bg-opacity-70' />
         { errorMessage && <p className='py-1 text-red-500'>{errorMessage}</p> }
-        <button className='p-4 my-6 bg-red-700 w-full rounded-sm' onClick={handleClick}>{ isSignInForm ? 'Sign In' : 'Sign Up'}</button>
-        <p className='py-4'>{ isSignInForm ? 'New to Netflix?' : 'Already Register?'}
+        <button className='p-4 my-6 bg-red-700 w-full rounded-sm' onClick={handleClick}>{ isSignInForm ? lang[config.lang].signIn : lang[config.lang].signUp }</button>
+        <p className='py-4'>{ isSignInForm ? lang[config.lang].NewToNetflix : lang[config.lang].alreadyRegister }
             <span className='hover:underline cursor-pointer font-bold' onClick={toggleSignInForm}> 
-            { isSignInForm ? ' Sign Up Now' : ' Sign In'} </span>
+            { isSignInForm ? lang[config.lang].signUpNow : lang[config.lang].signIn } </span>
         </p>
-        
       </form>
     </div>
   )
