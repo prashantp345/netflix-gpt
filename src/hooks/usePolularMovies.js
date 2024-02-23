@@ -8,6 +8,10 @@ const usePolularMovies = () => {
     const dispatch = useDispatch();
     const popularMovies = useSelector((store) => store.movies.popularMovies);
 
+    useEffect(() => {
+      !popularMovies && getPolularMovies();
+    }, []);
+    
     const getPolularMovies = async () => {
       const data = await fetch(
         API_POPULAR_MOVIES,
@@ -17,9 +21,7 @@ const usePolularMovies = () => {
       dispatch(addPopularMovies(moviesList.results));
     }
   
-    useEffect(() => {
-      !popularMovies && getPolularMovies();
-    }, []);
+   
 }
 
 export default usePolularMovies;

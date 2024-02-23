@@ -22,7 +22,7 @@ const MovieList = ({ title, moviesList}) => {
 
     return (
         <div className='px-6'>
-            <h1 className='text-3xl py-4 text-white'>{title}</h1>
+            <h1 className='text-lg md:text-3xl py-4 text-white'>{title}</h1>
             <div ref={scollToRef} className='flex overflow-x-scroll no-scrollbar'>
                 { scrollbarIconLeft &&  <button onClick={() => scrollLeft()}
                     className='text-white shadow-black shadow-lg mt-28 hover:text-yellow-400 text-4xl outline-none border-none cursor-pointer absolute justify-between'>
@@ -31,7 +31,7 @@ const MovieList = ({ title, moviesList}) => {
                 }
                 <div className='flex'> 
                     { moviesList.map((movie) => (
-                        <MovieCard key={movie.id} posterPath={movie.poster_path} />
+                        <MovieCard key={movie.id} movie={movie} posterPath={movie.poster_path} />
                     ))}
                 </div>
                 <button onClick={()=>scrollRight()} className='text-white mt-28 right-0 hover:text-yellow-400 text-4xl outline-none border-none cursor-pointer absolute justify-end'>

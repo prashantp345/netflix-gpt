@@ -8,7 +8,7 @@ const SecondaryContaner = () => {
   return (
     movies && (
     <div className='bg-black'>
-      <div className='-mt-44 pl-12 relative z-20'>
+      <div className='mt-0 md:-mt-44 pl-0 md:pl-4 relative z-20'>
         <MovieList title={"Now Playing Movies"} moviesList={ movies?.nowPlayingMovies } />
         <MovieList title={"Polupar"} moviesList={ movies?.popularMovies } />
         <MovieList title={"Trending"} moviesList={ movies?.topRatedMovies } />

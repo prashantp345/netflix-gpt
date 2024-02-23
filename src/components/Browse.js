@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 
 const Browse = () => {
 
-  const gpt = useSelector((store)=> store.gpt)
+  const gpt = useSelector((store)=> store.gpt);
 
   useNowPlayingMovies();
   usePolularMovies();
@@ -40,4 +40,4 @@ const Browse = () => {
   )
 }
 
-export default Browse
+export default Browse;
