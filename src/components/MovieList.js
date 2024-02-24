@@ -31,7 +31,7 @@ const MovieList = ({ title, moviesList}) => {
                 }
                 <div className='flex'> 
                     { moviesList.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie} posterPath={movie.poster_path} />
+                        movie.poster_path && <MovieCard key={movie.id} movie={movie} posterPath={movie.poster_path} />
                     ))}
                 </div>
                 <button onClick={()=>scrollRight()} className='text-white mt-28 right-0 hover:text-yellow-400 text-4xl outline-none border-none cursor-pointer absolute justify-end'>

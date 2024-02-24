@@ -55,7 +55,6 @@ const GptSearchBar = () => {
                     {lang[config.lang].search}
                 </button>
             </form>
-            <div>Hello </div>
         </div>
     )
 }

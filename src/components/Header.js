@@ -17,6 +17,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const gptSearch = useSelector((store) => store.gpt);
+  const config = useSelector((store) => store.config);
   const selectedLanguage = useRef(null);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const Header = () => {
       <img className="w-24 md:w-44 mx-auto md:mx-0" src={Netflix_Logo_PMS} alt="logo"></img>
       <div className='flex md:justify-between justify-center'>
       { (gptSearch.showGptSearch || location?.pathname !="/browse") && <select className='p-2 m-2 bg-black rounded-lg font-bold text-white opacity-70 border border-white text-xs md:text-base'
-              ref={selectedLanguage} onChange={handlelanguageChange}>
+              ref={selectedLanguage} onChange={handlelanguageChange} value={config?.lang}>
               {SUPPORTED_LANGUAGES.map(lang => 
               <option key={lang?.identifier} value={lang?.identifier} className=''>
                 {lang.name}
