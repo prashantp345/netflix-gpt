@@ -26,11 +26,13 @@ const GptSearchBar = () => {
             const gptResults = await openai.chat.completions.create({
                 messages: [{ role: 'user', content: searchQuery }],
                 model: 'gpt-3.5-turbo',
+            }).catch((error) => {
+                console.log(error)
             });
-            if(!gptResults.choices) {
+            if(!gptResults?.choices) {
                 return // handle gpt error
             }
-            const gptSearchList = gptResults.choices?.[0].message?.content;
+            const gptSearchList = gptResults?.choices?.[0].message?.content;
             //const gptSearchList = "La La Land, Roman Holiday, Midnight in Paris, The Great Gatsby, Titanic";
             const gptMovies = gptSearchList.split(",");
             const promiseArr = gptMovies.map(movie => searchMovieTMDB(movie));

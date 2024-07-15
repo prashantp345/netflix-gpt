@@ -31,7 +31,7 @@
 - Tailwind Classes to make Main Container look Awesome
 - Build Secondary Component
 0 Build Movie List
-- Vuild Movie Card
+- Build Movie Card
 - TMDB Image CDN URL
 - Made the browse page amazing
 - usePopular Movies custon Hook
